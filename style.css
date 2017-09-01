@@ -1,0 +1,66 @@
+.icon{
+  width: 25px;
+  height: 25px;
+}
+
+#target{
+  background-color: transparent;
+  margin: 0 auto;
+  margin-top: 2%;
+  width: 25%;
+  border-radius: 5px;
+}
+
+
+
+textarea:focus, input:focus{
+    color: black;
+    outline: none;
+}
+
+.searchLogo{
+position: absolute;
+display: inline;
+height: 40px;
+width: 40px;
+margin-left: 60%;
+transform: translateY(-40px);
+}
+
+
+#display{
+  display:flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  margin-left: 5%;
+}
+
+
+.w3-card-4{
+font-family: monospace;
+font-size: 17px;
+margin: 10px;
+width: 20%;
+text-align: center;
+padding-bottom: 3%;
+}
+
+.albumArt{
+  height: 60%;
+  width: 100%;
+}
+
+
+.music-container {
+   position:fixed;
+   left:0px;
+   bottom:0px;
+   height:40px;
+   width:100%;
+}
+
+
+
+.music-player{
+  width: 100%;
+}
