@@ -1,71 +1,29 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <title>Stream Music</title>
-  <meta charset="UTF-8">
-  <link rel="stylesheet" href="style.css"/>
-  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-</head>
-<body>
+<header>
 
-<!-- Navbar (sit on top) -->
-<div class="w3-top">
-  <div class="w3-bar w3-white w3-wide w3-padding w3-card-2">
-    <a href="#home" class="w3-bar-item w3-button"><b><img class="icon" src="./home.png" type="image/x-icon"/></b> Stream Music</a>
-    <!-- Float links to the right. Hide them on small screens -->
-    <div class="w3-right w3-hide-small">
-      <a href="#MusicSection" class="w3-bar-item w3-button">Music Search</a>
-    </div>
-  </div>
-</div>
-
-
-<!-- Header -->
-<header class="w3-display-container w3-content w3-wide" style="max-width:1500px;" id="home">
-  <img class="w3-image" src="https://media.giphy.com/media/IXT16ltI7K2nC/giphy.gif" alt="Architecture" width="1500" height="800">
+    <link rel="stylesheet" href="style.css"/>
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css"/>
+    <title>Stream Music</title>
 </header>
+  <body>
+    <div>
+      <img class="w3-image" src="https://media.giphy.com/media/IXT16ltI7K2nC/giphy.gif" alt="Architecture" width="1500" height="800">
+    </div>
 
-<!-- Page content -->
-<div class="w3-content w3-padding" style="max-width:1564px">
+      <div class="nav-box">
 
-<!-- Search bar inputfield -->
-<input type="text"  class="w3-input w3-border" id="TextValue" placeholder="Search.. Artist, Band, Track " />
-
-<img src="https://cdn1.iconfinder.com/data/icons/hawcons/32/698956-icon-111-search-128.png" class="searchLogo"/>
-<ul>
-  <li><a href="#" onclick="selectGenre()"class="genre">Dubstep</a></li>
-  <li><a href="#" class="genre">Rap</a></li>
-  <li><a href="#" class="genre">Rock</a></li>
-  <li><a href="#" class="genre">Classical</a></li>
-  <li><a href="#" class="genre">Electronic</a></li>
-</ul>
-
-<h3 class="w3-border-bottom w3-border-light-grey w3-padding-16">Music</h3>
-<form id="MusicSection" onsubmit="searchSong()">
-  <input type="submit">
-  <div class="w3-container w3-padding-32">
-
-</form>
-
-<!-- Display Content -->
-<div id="display" style="width:100%;"></div>
-
-<!-- Audio Player -->
-<div class="music-container">
-  <audio class="music-player" controls="controls" autoplay="true"></audio>
-</div>
-
-</div>
-
-</div>
-
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/fetch/2.0.3/fetch.min.js"></script>
-<script src="https://connect.soundcloud.com/sdk/sdk-3.1.2.js"></script>
-<script type="text/javascript" src="main.js"></script>
-<!-- <script type="text/javascript" src="func.js"></script> -->
-
-
-
-</body>
+        <form class="textForm">
+        <input id="searchBar" type="text" placeholder="Explore Music Search"/>
+      </form>
+      </div>
+      <div class="results-container"></div>
+  <footer>
+    <div class="music-bar">
+    <audio class="music-player" controls="controls" src="" autoplay="true"></audio>
+  </div>
+  </footer>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/fetch/2.0.3/fetch.min.js"></script>
+  <script src="main.js"></script>
+  </body>
 </html>

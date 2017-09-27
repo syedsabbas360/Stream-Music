@@ -1,90 +1,66 @@
-// Element im working with
-
-let display = document.querySelector('#display');
-let textValue = document.querySelector('#TextValue').value;
-let searchLogo = document.querySelector('.searchLogo');
-let token = '?client_id=095fe1dcd09eb3d0e1d3d89c76f5618f&q=';
+var results = document.querySelector(".results-container") //grabbing HTML Elements to use in here
+var player = document.querySelector(".music-player")
+var textForm = document.querySelector(".textForm")
+var searchBar = document.querySelector("#searchBar")
 
 
+textForm.addEventListener('submit', function(event){ //adding Event listener for when a keyboard button is pushed
+    console.log('Fire!')
+    event.preventDefault();
+    results.textContent = ""
+    let artist = searchBar.value;
+    getInfo(artist)
+})
 
-//clear out input from user and call getInfo function to fetch API
-  function searchSong(textValue){
-  console.log("Fired")
-
-    display.textContent = ""
-
-    getInfo(textValue);
-
-
-};
-
-
-// fetch API pass down artist event and stores users ID
 
 function getInfo(event){
-  console.log("Fired 2")
-fetch(`http://api.soundcloud.com/users/${token}${event}`) //API address used to grab info
+fetch(`https://api.soundcloud.com/users/?client_id=095fe1dcd09eb3d0e1d3d89c76f5618f&q=${event}`) //API address used to grab info
       .then( function(response) {
         return response.json() //returns API in Json format
       }).then(function(data){
+              var userId = data[0].id
 
-        let userID = data[0].id;
-
-        TrackInfo(userID);
-
-      });
-};
+              songData(userId);
+      })
+}
 
 
-// Another Fetch request that uses the ID to search for unique track
-
-function TrackInfo(userID){
-
-  fetch(`http://api.soundcloud.com/users/${userID}/tracks/${token}`)
-    .then( function(response){
-      return response.json()
-    })
-    .then( function(data){
-      moreInfo(data)
-    })
+function songData(userId){ //searching API for track Info
+  fetch(`http://api.soundcloud.com/users/${userId}/tracks/?client_id=095fe1dcd09eb3d0e1d3d89c76f5618f&q=`)
+  .then(function(response){
+    return response.json()
+  }).then(function(data){
+    moreInfo(data)
+  })
 }
 
 
 
 
-// fill in dynamic html song-cards with fetch values
 
-function moreInfo(data){
-  displayResults="";
+function moreInfo(data){ //looping through values in Objects
+  displayResults=""
   for(i=0; i<data.length; i++){
-    let title = data[i].title;
-    let artwork = data[i].artwork_url;
-    let userName= data[i].user.username;
-    let stream = data[i].stream_url
+
+    var id = data[i].id
 
 
-    let id = data[i].id
-
-    displayResults += `
-                  <div class="w3-card-4"  type="click" value=${id} id=${id} onclick=audio(${id})>
-                  <img class="albumArt" data-song-link="${stream}" src="${artwork}"/>
-                  <p> <b>Title: </b>  ${title}</p>
-                  <p> <b>Artist: </b>  ${userName}</p>
-                  </div>
-                  `
+//Adding onclick function to div
+  displayResults +=
+  `<div class="w3-card-4" type="click" value=${id} onclick=audio(${id})>
+    <img class="albumArt" src="${data[i].artwork_url}"/>
+    <h4>${data[i].title}</h4>
+    <p>${data[i].user.username}</p>
+  </div>`
   }
 
-   display.insertAdjacentHTML('afterbegin', displayResults);
+  results.insertAdjacentHTML('afterbegin', displayResults);//appending information to HTML
 }
 
 
 
-// querySelect audio tag give src attribute that adds + stream link API
-
-function audio(id){
-
-  let audioSource = document.querySelector("audio");
-
-  audioSource.src = "https://api.soundcloud.com/tracks/"+id+"/stream?client_id=095fe1dcd09eb3d0e1d3d89c76f5618f"
-
+function audio(id){ //adding source to audio player
+  var song = document.querySelector("audio")
+  song.src = "https://api.soundcloud.com/tracks/"+id+"/stream?client_id=095fe1dcd09eb3d0e1d3d89c76f5618f"
+  console.log(id)
 }
